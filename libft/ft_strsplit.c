@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-
+#include <stdio.h>
 static size_t	num_of_strings(char const *s, char c, size_t *x)
 {
 	size_t i;
@@ -95,15 +95,15 @@ char			**ft_strsplit(char const *s, char c)
 	len = num_of_strings(s, c, &read_s);
 	if (!(strsplit = (char **)malloc((len + 1) * sizeof(char *))))
 		return (NULL);
-	while (i < len + 1)
+	while (i < len)
 	{
 		if (!(strsplit[i] = ft_strnew(len_str(&temp, c))))
 			return (free_malloc(&strsplit, i));
 		i++;
 	}
+	strsplit[i] = NULL;
 	i = 0;
 	while (i < len)
 		assign_char(&strsplit[i++], s, &read_s, c);
-	strsplit[i] = NULL;
 	return (strsplit);
 }
